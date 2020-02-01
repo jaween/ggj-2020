@@ -104,6 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7094608596492856001}
   - component: {fileID: 7094608596492856000}
+  - component: {fileID: 1099543497701752288}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -141,3 +142,16 @@ MonoBehaviour:
   speed: 10
   randomDirectionRange: 0.01
   bubbleController: {fileID: 0}
+--- !u!65 &1099543497701752288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094608596492856063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

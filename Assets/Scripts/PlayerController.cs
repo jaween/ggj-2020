@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     public HazardManager hazardManager;
     public BubbleController bubbleController;
-    
+    public GameOverController gameOverController;  
+
     void Start()
     {
         
@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.GetComponent<Hazard>() != null)
         {
             hazardManager.DestroyHazard(other.gameObject);
+        }
+        if (other.gameObject.GetComponent<EnemyController>() != null) {
+            gameOverController.GameOver();
+            Destroy(this.gameObject);
         }
     }
 }

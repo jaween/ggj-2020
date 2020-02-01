@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public BubbleController bubbleController;
+    public bool spawning = true;
 
     public int initialEnemyCount;
     public int secondsBetweenSpawns;
@@ -36,6 +37,10 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsBetweenSpawns);
         Spawn();
-        StartCoroutine(SpawnTask());
+
+        if (spawning)
+        {
+            StartCoroutine(SpawnTask());
+        }
     }
 }

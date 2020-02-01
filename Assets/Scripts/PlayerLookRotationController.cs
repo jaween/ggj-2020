@@ -13,7 +13,7 @@ public class PlayerLookRotationController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        
+
         Vector3 inputDir = new Vector3(horizontal, vertical, 0).normalized;
         transform.localRotation = Quaternion.Euler(inputDir.x, inputDir.y, 0);
         float angle = Mathf.Atan2(horizontal, vertical) * Mathf.Rad2Deg;

@@ -69,7 +69,7 @@ public class HazardManager : MonoBehaviour
     
     private void GenerateHazard()
     {
-        Vector3 direction = Random.insideUnitSphere.normalized;
+        Vector3 direction = Random.onUnitSphere;
         int index = Random.Range(0, hazardPrefabs.Length);
 
         GameObject hazard = Instantiate(hazardPrefabs[index], direction * bubbleController.Radius, Quaternion.Euler(direction));

@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 public class HealthUIController : MonoBehaviour
 {
-    public BubbleController bubbleController;
-    private Slider slider;
+    public ScoreController scoreController;
+    private Text scoreText;
     void Start()
     {
-        slider = GetComponent<Slider>();
+    
+        scoreText = GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = bubbleController.Health;
+        scoreText.text = "Score: " + scoreController.Score.ToString();
     }
 }

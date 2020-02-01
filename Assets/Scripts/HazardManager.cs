@@ -19,6 +19,7 @@ public class HazardManager : MonoBehaviour
     }
 
     public BubbleController bubbleController;
+    public ScoreController scoreController;
 
     public float indicatorDistance;
     void Start()
@@ -79,6 +80,7 @@ public class HazardManager : MonoBehaviour
 
     public void DestroyHazard(GameObject hazard)
     {
+        scoreController.HolesRepaired++;
         GameObject indicator = hazardIndicators[hazard];
         hazardIndicators.Remove(hazard);
         hazards.Remove(hazard);

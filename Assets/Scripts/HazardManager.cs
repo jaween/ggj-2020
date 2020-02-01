@@ -16,10 +16,9 @@ public class HazardManager : MonoBehaviour
     public IList<GameObject> Hazards
     {
         get { return hazards; }
-        private set { }
     }
 
-    public float radius;
+    public BubbleController bubbleController;
 
     public float indicatorDistance;
     void Start()
@@ -32,8 +31,13 @@ public class HazardManager : MonoBehaviour
         for (var i = 0; i < hazards.Count; i++)
         {
             GameObject hazard = hazards[i];
+            hazard.transform.position = hazard.transform.up * bubbleController.Radius;
+
             GameObject indicator;
-            hazardIndicators.TryGetValue(hazard, out indicator);
+            if (!hazardIndicators.TryGetValue(hazard, out indicator))
+            {
+                continue;
+            }
 
             Vector3 playerToHazard = hazard.transform.position - playerTransform.position;
             float distanceToHazard = playerToHazard.magnitude;
@@ -44,12 +48,13 @@ public class HazardManager : MonoBehaviour
 
             indicator.transform.rotation = Quaternion.LookRotation(playerToHazardOnPlayerPlane, playerTransform.up);
 
-            if (distanceToHazard > 8) {
+            indicator.transform.position = playerTransform.position + playerToHazardOnPlayerPlane * indicatorDistance;
+            /*if (distanceToHazard > 8) {
                 indicator.transform.position = playerTransform.position + playerToHazardOnPlayerPlane * indicatorDistance;
             } else
             {
                 indicator.transform.position = hazard.transform.position - playerToHazardOnPlayerPlane * indicatorDistance;
-            }
+            }*/
             indicator.transform.position += indicator.transform.up * 2;
         }
     }
@@ -57,26 +62,27 @@ public class HazardManager : MonoBehaviour
     IEnumerator Generate()
     {
         GenerateHazard();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         StartCoroutine(Generate());
     }
-
+    
     private void GenerateHazard()
     {
         Vector3 direction = Random.insideUnitSphere.normalized;
         int index = Random.Range(0, hazardPrefabs.Length);
 
-        GameObject hazard = Instantiate(hazardPrefabs[index], direction * radius, Quaternion.Euler(direction));
-        hazardIndicators[hazard] = Instantiate(hazardIndicatorPrefab);
+        GameObject hazard = Instantiate(hazardPrefabs[index], direction * bubbleController.Radius, Quaternion.Euler(direction));
+        hazard.transform.up = direction;
         hazards.Add(hazard);
+        hazardIndicators[hazard] = Instantiate(hazardIndicatorPrefab);
     }
 
     public void DestroyHazard(GameObject hazard)
     {
-        Destroy(hazardIndicators[hazard]);
+        GameObject indicator = hazardIndicators[hazard];
         hazardIndicators.Remove(hazard);
-
-        Destroy(hazard);
         hazards.Remove(hazard);
+        Destroy(indicator);
+        Destroy(hazard);
     }
 }

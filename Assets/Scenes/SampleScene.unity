@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNode: {fileID: 2094400725}
   distance: 10
+  gameOver: 0
 --- !u!4 &485571507
 Transform:
   m_ObjectHideFlags: 0
@@ -468,7 +469,7 @@ MonoBehaviour:
     type: 3}
   bubbleController: {fileID: 521117040}
   spawning: 1
-  initialEnemyCount: 5
+  initialEnemyCount: 3
   secondsBetweenSpawns: 1
 --- !u!4 &667909114
 Transform:
@@ -518,7 +519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -28.57}
+  m_AnchoredPosition: {x: 0, y: -56.54}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670418280
@@ -552,7 +553,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &670418281
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -688,7 +689,8 @@ MonoBehaviour:
     type: 3}
   playerTransform: {fileID: 2094400725}
   bubbleController: {fileID: 521117040}
-  scoreController: {fileID: 0}
+  scoreController: {fileID: 656306395}
+  gameOverController: {fileID: 1649857579}
   indicatorDistance: 3
 --- !u!4 &953722582
 Transform:
@@ -780,13 +782,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.5894783, y: -0, z: -0, w: 0.80778426}
+  m_LocalRotation: {x: 0.6844835, y: 0, z: 0, w: 0.72902834}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 485571507}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 72.24, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 86.39, y: 0, z: 0}
 --- !u!1 &1126388212
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1242561792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -876,7 +878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242561791}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -941,7 +943,9 @@ MonoBehaviour:
   movementController: {fileID: 1126388213}
   hazardManager: {fileID: 953722581}
   bubbleController: {fileID: 521117040}
+  cameraController: {fileID: 485571506}
   enemySpawner: {fileID: 667909113}
+  gameOverText: {fileID: 1242561793}
 --- !u!4 &1649857580
 Transform:
   m_ObjectHideFlags: 0
@@ -1118,7 +1122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hazardManager: {fileID: 953722581}
   bubbleController: {fileID: 521117040}
-  gameOverController: {fileID: 0}
+  gameOverController: {fileID: 1649857579}
 --- !u!23 &2094400723
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Hazard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float life = 100;
+    public float lifeReductionRate;
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        life -= lifeReductionRate * Time.fixedDeltaTime;
+        life = Mathf.Clamp(life, 0, 100);
     }
 }

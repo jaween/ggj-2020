@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public Transform playerNode;
     public float distance;
+    public bool gameOver = false;
 
     void Start()
     {
@@ -15,7 +16,10 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerNode.position + playerNode.up * distance;
-        transform.rotation = Quaternion.LookRotation(playerNode.forward, playerNode.up);
+        if (!gameOver)
+        {
+            transform.position = playerNode.position + playerNode.up * distance;
+            transform.rotation = Quaternion.LookRotation(playerNode.forward, playerNode.up);
+        }
     }
 }

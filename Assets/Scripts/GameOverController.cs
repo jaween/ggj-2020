@@ -8,6 +8,7 @@ public class GameOverController : MonoBehaviour
     public MovementController movementController;
     public HazardManager hazardManager;
     public BubbleController bubbleController;
+    public CameraController cameraController;
     public EnemySpawner enemySpawner;
     public Text gameOverText;
     // Start is called before the first frame update
@@ -29,5 +30,6 @@ public class GameOverController : MonoBehaviour
         enemySpawner.spawning = false;
         bubbleController.expanding = false;
         gameOverText.enabled = true;
+        cameraController.gameOver = true;
     }
 }

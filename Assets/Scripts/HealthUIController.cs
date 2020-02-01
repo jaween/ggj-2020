@@ -8,8 +8,7 @@ public class HealthUIController : MonoBehaviour
     public ScoreController scoreController;
     private Text scoreText;
     void Start()
-    {
-    
+    {   
         scoreText = GetComponentInChildren<Text>();
     }
 

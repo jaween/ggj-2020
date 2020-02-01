@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public bool spawning = true;
 
     public int initialEnemyCount;
-    public int secondsBetweenSpawns;
+    public float secondsBetweenSpawns;
     
     void Start()
     {

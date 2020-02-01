@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1244748207690fa46b5555fcd77108d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   randomDirectionRange: 0.01
   bubbleController: {fileID: 0}
 --- !u!65 &1099543497701752288

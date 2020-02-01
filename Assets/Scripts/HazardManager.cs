@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HazardManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class HazardManager : MonoBehaviour
 
     public BubbleController bubbleController;
     public ScoreController scoreController;
+    public GameOverController gameOverController;
 
     public float indicatorDistance;
     void Start()
@@ -57,6 +59,14 @@ public class HazardManager : MonoBehaviour
                 indicator.transform.position = hazard.transform.position - playerToHazardOnPlayerPlane * indicatorDistance;
             }*/
             indicator.transform.position += indicator.transform.up * 2;
+
+            Hazard hazardController = hazard.GetComponent<Hazard>();
+            if (hazardController.life <= 0)
+            {
+                gameOverController.GameOver();
+            }
+
+            indicator.GetComponent<HazardIndicatorController>().timeText.text = ((int) (hazardController.life/10f)).ToString();
         }
     }
 

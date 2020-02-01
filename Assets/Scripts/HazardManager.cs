@@ -5,12 +5,24 @@ using UnityEngine;
 public class HazardManager : MonoBehaviour
 {
     public GameObject[] hazardPrefabs;
+
+
     private IList<GameObject> hazards = new List<GameObject>();
+    public IList<GameObject> Hazards
+    {
+        get { return hazards; }
+        private set { }
+    }
 
     public float radius;
     void Start()
     {
         StartCoroutine(Generate());
+    }
+
+    private void Update()
+    {
+        
     }
 
     IEnumerator Generate()

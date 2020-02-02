@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.GetComponent<EnemyController>() != null) {
             gameOverController.GameOver();
-            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
     }
 }

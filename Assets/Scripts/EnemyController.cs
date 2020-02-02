@@ -12,9 +12,12 @@ public class EnemyController : MonoBehaviour
     private float angleVelocity = 0;
     private Vector2 directionInPlane = new Vector2(2, 1);
 
+    float scale = 0;
+    float maxScale;
     void Start()
     {
-        
+        transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        maxScale = Random.Range(3, 5);
     }
 
     void FixedUpdate()
@@ -28,5 +31,9 @@ public class EnemyController : MonoBehaviour
         angleVelocity += angleAcc;
         angleVelocity = Mathf.Clamp(angleVelocity, -1, 1);
         transform.Rotate(Vector3.up, angleVelocity);
+
+        scale += Time.fixedDeltaTime * 5;
+        scale = Mathf.Clamp(scale, 0, maxScale);
+        transform.localScale = Vector3.one * scale;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class GameOverController : MonoBehaviour
             timeOfGameOver = Time.time;
             StartCoroutine(AnimateText());
             gameOver = true;
+            StartCoroutine(Restart());
         }
     }
 
@@ -40,5 +42,11 @@ public class GameOverController : MonoBehaviour
         gameOverText.transform.localScale = new Vector3(scale, scale, scale);
         yield return new WaitForEndOfFrame();
         StartCoroutine(AnimateText());
+    }
+
+    IEnumerator Restart()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Title", LoadSceneMode.Single);
     }
 }

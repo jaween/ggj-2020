@@ -13,6 +13,8 @@ public class HazardManager : MonoBehaviour
     public Transform playerTransform;
     public bool gameOver = false;
 
+    public bool isTitleScreen;
+
     private IList<GameObject> hazards = new List<GameObject>();
     private IDictionary<GameObject, GameObject> hazardIndicators = new Dictionary<GameObject, GameObject>();
     public IList<GameObject> Hazards
@@ -27,11 +29,25 @@ public class HazardManager : MonoBehaviour
     public float indicatorDistance;
     void Start()
     {
-        StartCoroutine(Generate());
+        if (!isTitleScreen)
+        {
+            StartCoroutine(Generate());
+        } else
+        {
+            for (var i = 0; i < 10; i++) 
+            {
+                Generate();
+            }
+        }
     }
 
     private void Update()
     {
+        if (isTitleScreen)
+        {
+            return;
+        }
+
         for (var i = 0; i < hazards.Count; i++)
         {
             GameObject hazard = hazards[i];

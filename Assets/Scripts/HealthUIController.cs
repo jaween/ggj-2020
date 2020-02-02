@@ -15,6 +15,6 @@ public class HealthUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score: " + scoreController.Score.ToString();
+        scoreText.text = "Score\n" + scoreController.Score.ToString();
     }
 }

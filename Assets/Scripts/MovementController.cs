@@ -5,6 +5,9 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public float maxSpeed;
+    public float friction;
+
+    private Vector2 velocity = Vector2.zero;
 
     void Start()
     {
@@ -17,7 +20,11 @@ public class MovementController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        transform.Rotate(Vector3.right, vertical * maxSpeed);
-        transform.Rotate(Vector3.forward, -1 * horizontal * maxSpeed);
+        velocity *= friction;
+        velocity = new Vector2(velocity.x + horizontal / 7, velocity.y + vertical / 7);
+        velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
+
+        transform.Rotate(Vector3.right, velocity.y);
+        transform.Rotate(Vector3.forward, -1 * velocity.x);
     }
 }

@@ -8,9 +8,11 @@ public class CameraController : MonoBehaviour
     public float distance;
     public bool gameOver = false;
 
+    private Vector3 v;
+
     void Start()
     {
-        
+        v = playerNode.position + playerNode.up * distance;
     }
 
     // Update is called once per frame
@@ -20,6 +22,11 @@ public class CameraController : MonoBehaviour
         {
             transform.position = playerNode.position + playerNode.up * distance;
             transform.rotation = Quaternion.LookRotation(playerNode.forward, playerNode.up);
+
+
+            //transform.rotation = Quaternion.LookRotation(playerNode.up, -targetDir);
+            //transform.position = Vector3.Lerp(transform.position, playerNode.position + playerNode.up * distance, 0.01f);
+            //transform.rotation = Quaternion.LookRotation(playerNode.forward, playerNode.up);
         }
     }
 }

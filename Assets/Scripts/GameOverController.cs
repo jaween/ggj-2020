@@ -27,6 +27,7 @@ public class GameOverController : MonoBehaviour
     {
         movementController.enabled = false;
         hazardManager.enabled = false;
+        hazardManager.gameOver = true;
         enemySpawner.spawning = false;
         bubbleController.expanding = false;
         gameOverText.enabled = true;

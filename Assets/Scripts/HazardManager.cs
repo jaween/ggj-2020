@@ -11,6 +11,7 @@ public class HazardManager : MonoBehaviour
     public GameObject hazardIndicatorPrefab;
 
     public Transform playerTransform;
+    public bool gameOver = false;
 
     private IList<GameObject> hazards = new List<GameObject>();
     private IDictionary<GameObject, GameObject> hazardIndicators = new Dictionary<GameObject, GameObject>();
@@ -74,7 +75,11 @@ public class HazardManager : MonoBehaviour
     {
         GenerateHazard();
         yield return new WaitForSeconds(5);
-        StartCoroutine(Generate());
+
+        if (!gameOver)
+        {
+            StartCoroutine(Generate());
+        }
     }
     
     private void GenerateHazard()

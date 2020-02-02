@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerLookRotationController : MonoBehaviour
 {
     Vector3 oldEulerAngles = Vector3.up;
+    float bobbing = 0;
     void Start()
     {
         
@@ -26,5 +27,7 @@ public class PlayerLookRotationController : MonoBehaviour
             oldEulerAngles = new Vector3(Mathf.Abs(vertical + horizontal) * 35, angle * Mathf.Rad2Deg, 0);
         }
         transform.localEulerAngles = oldEulerAngles;
+        transform.localPosition = Vector3.up * Mathf.Sin(bobbing) * 0.3f + Vector3.right * Mathf.Sin(bobbing / 2) * 0.1f;
+        bobbing += Time.deltaTime * 50 * inputDir.magnitude;
     }
 }

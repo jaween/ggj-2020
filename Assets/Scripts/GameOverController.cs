@@ -11,17 +11,8 @@ public class GameOverController : MonoBehaviour
     public CameraController cameraController;
     public EnemySpawner enemySpawner;
     public Text gameOverText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private float timeOfGameOver;
 
     public void GameOver()
     {
@@ -32,5 +23,17 @@ public class GameOverController : MonoBehaviour
         bubbleController.expanding = false;
         gameOverText.enabled = true;
         cameraController.gameOver = true;
+
+        timeOfGameOver = Time.time;
+        StartCoroutine(AnimateText());
+    }
+
+    IEnumerator AnimateText()
+    {
+        float timeSinceGameOver = Time.time - timeOfGameOver;
+        float scale = 0.1f*Mathf.Sin(timeSinceGameOver) + 1f;
+        gameOverText.transform.localScale = new Vector3(scale, scale, scale);
+        yield return new WaitForEndOfFrame();
+        StartCoroutine(AnimateText());
     }
 }

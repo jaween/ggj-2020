@@ -13,19 +13,24 @@ public class GameOverController : MonoBehaviour
     public Text gameOverText;
 
     private float timeOfGameOver;
+    private bool gameOver = false;
 
     public void GameOver()
     {
-        movementController.enabled = false;
-        hazardManager.enabled = false;
-        hazardManager.gameOver = true;
-        enemySpawner.spawning = false;
-        bubbleController.expanding = false;
-        gameOverText.enabled = true;
-        cameraController.gameOver = true;
+        if (!gameOver)
+        {
+            movementController.enabled = false;
+            hazardManager.enabled = false;
+            hazardManager.gameOver = true;
+            enemySpawner.spawning = false;
+            bubbleController.expanding = false;
+            gameOverText.enabled = true;
+            cameraController.gameOver = true;
 
-        timeOfGameOver = Time.time;
-        StartCoroutine(AnimateText());
+            timeOfGameOver = Time.time;
+            StartCoroutine(AnimateText());
+            gameOver = true;
+        }
     }
 
     IEnumerator AnimateText()

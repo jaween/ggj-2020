@@ -20,8 +20,13 @@ public class CameraController : MonoBehaviour
     {
         if (!gameOver)
         {
-            transform.position = playerNode.position + playerNode.up * distance;
-            transform.rotation = Quaternion.LookRotation(playerNode.forward, playerNode.up);
+            Vector3 targetPos = (playerNode.position + playerNode.up * distance);
+            Vector3 targetDir = (targetPos - transform.position).normalized;
+            transform.position = targetPos;// Vector3.Lerp(transform.position, targetPos, 0.2f);
+            //transform.rotation = Quaternion.LookRotation(playerNode.forward, playerNode.up);
+
+
+            transform.rotation = Quaternion.LookRotation((playerNode.position - transform.position).normalized, playerNode.forward);
 
 
             //transform.rotation = Quaternion.LookRotation(playerNode.up, -targetDir);

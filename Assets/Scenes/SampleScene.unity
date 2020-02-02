@@ -201,6 +201,7 @@ MonoBehaviour:
   playerNode: {fileID: 459672528}
   distance: 15
   gameOver: 0
+  zoomOutRate: 0.01
 --- !u!4 &485571507
 Transform:
   m_ObjectHideFlags: 0

@@ -7,12 +7,14 @@ public class CameraController : MonoBehaviour
     public Transform playerNode;
     public float distance;
     public bool gameOver = false;
+    public float zoomOutRate;
 
-    private Vector3 v;
+    private Vector3 oldTargetPos;
 
     void Start()
     {
-        v = playerNode.position + playerNode.up * distance;
+        oldTargetPos = playerNode.position;
+
     }
 
     // Update is called once per frame
@@ -20,11 +22,12 @@ public class CameraController : MonoBehaviour
     {
         if (!gameOver)
         {
-            Vector3 targetPos = (playerNode.position + playerNode.up * distance);
+            Vector3 targetPos = (playerNode.position + playerNode.up * (distance + Time.time * zoomOutRate));
             Vector3 targetDir = (targetPos - transform.position).normalized;
             transform.position = targetPos;// Vector3.Lerp(transform.position, targetPos, 0.2f);
             //transform.rotation = Quaternion.LookRotation(playerNode.forward, playerNode.up);
-
+            Vector3 movementDir = (playerNode.position - oldTargetPos).normalized;
+            oldTargetPos = targetPos;
 
             transform.rotation = Quaternion.LookRotation((playerNode.position - transform.position).normalized, playerNode.forward);
 
